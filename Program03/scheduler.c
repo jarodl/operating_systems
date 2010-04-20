@@ -18,9 +18,13 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <pthread.h>
+#include <time.h>
 
 #define NTHREADS 5
 #define NUM_LOOPS 1000000
+
+pthread_mutex_t condition_mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_cond_t  condition_cond  = PTHREAD_COND_INITIALIZER;
 
 void *child_thread(void *arg);
 
@@ -52,6 +56,10 @@ int main(void) {
 
     // start the scheduler
     while (1) {
+        // wait one second
+        sleep(1);
+
+        // let the next child run
         ;
     }
 
